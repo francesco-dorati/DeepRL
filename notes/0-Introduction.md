@@ -49,3 +49,10 @@ Waits until the end of the episode, then calculates Gt (return) and updates the 
 At each step TD updates V(St).  
 Since we yet don't know Gt (expected return), we estimate it with `TDtarget = Rt+1 + gamma*V(St+1)`  
 ```V(St) <= V(St) + alpha * [Rt+1 + gamma * V(St+1) - V(St)]```  
+
+---
+
+## On-Policy vs Off-Policy
+- **On-Policy**: using the same policy for acting and updating.
+- **Off-Policy**: using a different policy for acting (inference) and updating (training).
+
