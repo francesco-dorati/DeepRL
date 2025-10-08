@@ -23,6 +23,8 @@ It is discounted by a gamma γ factor.
 It is the goal of the learning process.  
 **π***: optimal policy (the one that **maximizes the expected return (cumulative reward)**)
 
+---
+
 ## Policy Training Approaches
 ### - Policy-Based Methods
 We learn a policy function directly.
@@ -32,5 +34,5 @@ We learn a policy function directly.
 ### - Value-Based Methods
 We learn a **value function** that maps a state to the expected value of being at that state.  
 **value**: the expected discounted return the agent can get starting in that state, and then acting according to the policy.  
-**v(s)** =  **E**[ R | S = s]  
-The policy always chooses the state with **highest value**.
+```v(s) =  E[ R | S = s]```  
+The policy always chooses the state with **highest value** but can also use exploration/exploitation.
