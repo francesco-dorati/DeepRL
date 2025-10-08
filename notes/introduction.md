@@ -1,6 +1,4 @@
-# Unit 1 - Introduction
-
-## Introduction
+# Introduction to DeepRL
 
 ### Observation Space
 - **State *s***: a **complete description** of the state of the world (no hidden information). In a fully observable environment.
