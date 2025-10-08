@@ -32,12 +32,14 @@ We learn a policy function directly.
 - **Stochastic**: π(a | s) = P[A | s]  probability distribution over actions
 
 ### - Value-Based Methods
-We learn a **value function** that maps a state to the expected value of being at that state.  
-**value**: the expected discounted return the agent can get starting in that state, and then acting according to the policy.  
-```v(s) =  E[ R | S = s]```  
-The policy always chooses the state with **highest value** but can also use exploration/exploitation.
-
+We learn a **value function** that maps a state to the expected value of being at that state, then the policy is defined by hand.
+- **State-Value Function** `V(St)`: expected return if agent **starts at a given state and acts according to the policy**.
+- **Action-Value Function** `Q(St, At)`: expected return if agent **starts at a given state, takes a given action and then acts according to the policy**.
 ---
+### **Bellman Equation**
+Recursive equation used for computing the value of a state.  
+`V(s) = E[Rt+1 + gamma * V(St+1) | St = s]`
+
 
 ## Training Approaches
 
