@@ -63,3 +63,34 @@ where:
 
 **objective:** maximize `J(θ)`
 
+
+### Gradient Ascent
+**update step:** `θ <- θ + α * ∇J(θ)`
+
+- Since we can't calculate directly `∇J(θ)`  
+  -> we calculate a **gradient estimation with a sample-based estimate** (collect some trajectories)
+- To differentiate `∇J(θ)` we need to know about the environment dynamics but not always we do  
+  -> **Policy Gradient Theorem**
+
+### Policy Gradient Theorem
+"For any differentiable policy and for any policy objective function, the policy gradient is: `∇J(θ) = E[∇ log π(a_t|s_t) R(τ)]`"
+
+## The Reinforce Algorithm (Monte Carlo Reinforce)
+Policy-gradient algorithm that uses an estimated return from an entire episode to update the policy parameter `θ`.
+```
+Training Loop:
+  Use policy π to collect episode τ
+  Use the episode to estimate the gradient "∇J(θ) ~= g = ∑ ∇logπ(a_t|s_t)R(τ)"
+  Update the weights of the policy: "θ <- θ + α * g"
+```
+
+where in `g = ∑t ∇logπ(a_t|s_t) R(τ)`:  
+- `∇logπ(a_t|s_t)`: the **direction of steepest increase** of the (log) probability of selecting action `a_t` from state `s_t`
+- `R(τ)`:
+  - If the return is high, it will push up the probabilities of the (state, action) combinations.
+  - If the return is low, it will push down the probabilities of the (state, action) combinations.
+ 
+**we can also collect multiple episodes (trajectories):**  
+`g = (1/m) ∑i ∑t ∇logπ(a_ti|s_ti) R(τ_i)`  
+`m`: number of trajectories
+
