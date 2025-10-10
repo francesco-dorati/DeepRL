@@ -12,9 +12,9 @@ stacked frames -> CNN -> values
 **input preprocessing:** 160x210x3 -> 80x80x1 
 
 ### Deep Q-Learning
-Create a loss function and use gradient descent to minimize it.
-**Q-Target (TD target):** `Rt+1 + gamma * argmax(Q(St+1, a))`
-**Q-Loss (TD target):** `Q-Target - Q(St, At)`
+Create a loss function and use gradient descent to minimize it.  
+**Q-Target (TD target):** `Rt+1 + gamma * argmax(Q(St+1, a))`  
+**Q-Loss (TD target):** `Q-Target - Q(St, At)`  
 
 **Two phases:**  
 - **sampling:** perform actions and store the observed experience tuples in a replay memory.  
@@ -43,20 +43,20 @@ end
   ```
 
 #### Experience Replay memory (D)
-Since network tends to forget the previous experiences as it gets new experiences.
-Use a replay buffer that saves experience samples that can reused during training.
+Since network tends to forget the previous experiences as it gets new experiences.  
+Use a replay buffer that saves experience samples that can reused during training.  
 => Allows the agent to **learn from the same experiences multiple times**.
 
 #### Fixed Q-Target (Q')
-To calculate the loss (TD-Error), calculate the difference between TD target (Q-Target) and the current Q-value (estimation of Q).
-But if we use the same function for both tha Qtarget and the Qvalue it causes unstable training.  
-We use a fixed network (Q') for estimating TD target and update it (copy Q parameters) every C steps.  
+To calculate the loss (TD-Error), calculate the difference between TD target (Q-Target) and the current Q-value (estimation of Q).  
+But if we use the same function for both tha Qtarget and the Qvalue it causes unstable training.   
+We use a fixed network (Q') for estimating TD target and update it (copy Q parameters) every C steps.    
 => Stabilizes training
 
 #### Double DQN
- If non-optimal actions are regularly given a higher Q value than the optimal best action, the learning will be complicated.
-- Use DQN network to **select the best action to take for the next state** (the action with the highest Q-value).
-- Use our Target network to **calculate the target Q-value of taking that action at the next state**.
+ If non-optimal actions are regularly given a higher Q value than the optimal best action, the learning will be complicated.  
+- Use DQN network to **select the best action to take for the next state** (the action with the highest Q-value).  
+- Use our Target network to **calculate the target Q-value of taking that action at the next state**.  
 => Helps reduce the overestimation of Q-values and train faster.
 
 
