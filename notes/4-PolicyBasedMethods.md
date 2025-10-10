@@ -1,14 +1,14 @@
 # Policy Based Methods
 
 The main idea is to parametrize the policy (using a neural network).  
-The policy will output a **probability distribution over the actions**.  
-`pi(s) = P[A|s]`  
+The policy will output a **probability distribution over the actions** (action preference).  
+`π(s) = P[A|s]`  
 
 ## Policy-Based and Policy-Gradient Methods
 The optimization is most of the time **on-policy**, in both cases we search directly for the optimal policy.  
 The difference between these two methods lies on how we optimize the parameter `theta`:
-- **Policy-Based Methods**: We optimize the parameter `theta` indirectly by maximizing the local approximation of the objective function.
-- **Policy-Gradient Methods**: We optimize the parameter `theta` directly by performing the gradient ascent on the performance of the objective function `J(theta)`.
+- **Policy-Based Methods**: We optimize the parameter `θ` indirectly by maximizing the local approximation of the objective function.
+- **Policy-Gradient Methods**: We optimize the parameter `θ` directly by performing the gradient ascent on the performance of the objective function `J(θ)`.
 
 ## Policy-Gradient Methods
 ### Advantages
@@ -30,3 +30,36 @@ The difference between these two methods lies on how we optimize the parameter `
 - **Frequently, policy-gradient methods converges to a local maximum instead of a global optimum.**
 - Goes slower, step by step: **it can take longer to train** (inefficient).
 - Can have higher variance.
+
+### Method
+Let the agent interact during an episode, if we win we consider the action taken as good and make sure thay are sampled more in the future.   
+=> for each good state-action pair we want to increase `P(a|s)`
+```
+Training Loop:
+  Collect episode with the policy π
+  Calculate the return (sum of rewards)
+
+  Update the weights of π:
+    if positive return
+      -> increase the probability of each state-action pair taken during the episode
+    if negative return
+      -> decrease the probability of each state-action pair taken during the episode
+```
+
+**The objective function:**  
+`J(θ) = E[R(τ)]`  
+- `R(τ)`: **expected return**, expected cumulative reward
+- `τ`: **trajectory**, sequence of states and actions  
+
+in other words:  
+`J(θ) = ∑ P(τ; θ)R(τ)`  
+- `R(τ)`: return over arbitrary trajectory
+- `P(τ; θ)`: probability of each possible trajectory τ (depends on θ)
+
+where:  
+`P(τ; θ) = [Π P(s_t+1 | s_t, a_t) π(a_t | s_t)]`  
+- `P(s_t+1 | s_t, a_t)`: environment dynamics (state distribution)
+- `π(a_t | s_t)`: probability of taking that action a_t at state s_t
+
+**objective:** maximize `J(θ)`
+
