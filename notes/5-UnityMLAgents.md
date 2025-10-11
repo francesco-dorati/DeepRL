@@ -15,3 +15,6 @@ Inside the learning component there are two important elements:
 - **Agent Component**: the actor. We'll train it by optimizing its policy.
 - **Academy**: Orchestrates agents and their decision-making processes.
 
+## Observations
+
+**RayCasts**: Instead of vision (frame) raycasts are used.
