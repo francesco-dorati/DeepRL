@@ -56,3 +56,15 @@ Since we yet don't know Gt (expected return), we estimate it with `TDtarget = Rt
 - **On-Policy**: using the same policy for acting and updating.
 - **Off-Policy**: using a different policy for acting (inference) and updating (training).
 
+---
+## Reward
+- **Extrinsic Reward**: handmade funcion given by the environment dynamics.
+- **Intrinsic Reward (Curiosity)**: reward based on exploring new trajectories.  
+    Prediction error in predicting `s_t+1` given `s_t` and `a_t`.  
+    `IR = || predicted(s_t+1) - s_t+1 ||`
+  - Small IR in familiar states (easy to predict)
+  - Big IR in unfamiliar states (hard to predict)
+
+
+
+
