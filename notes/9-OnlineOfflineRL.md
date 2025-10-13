@@ -15,4 +15,4 @@ The agent learns using **data collected from other agents or human demonstration
 
 ### Counterfactual Queries Problem
 What do we do if the agent decides to do something for which we don't have the data?
-(Offline RL video)[https://www.youtube.com/watch?v=k08N5a0gG0A]
+[Offline RL video](https://www.youtube.com/watch?v=k08N5a0gG0A)
