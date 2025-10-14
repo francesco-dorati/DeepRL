@@ -1,0 +1,4 @@
+**/runs/
+**/videos/
+**/venv
+**/wandb/
